@@ -5,12 +5,20 @@ C = [1, 0, 0];                    %Matrica izlaza
 D = 0;                          %Matrica direktnog prenosa
 
 sys = ss(A, B, C, D);
-%initial(sys, [1; 1; 1])         %Sopstveni odziv
 %pause;
-T = 1e-3;
 
+T = 1e-3;
+ic = 0;
+
+%Modify model to include the disturbance model 
+%d = const.
+Aw = [0, 1; 0, 0];
+Cw = [1, 0];
+Ae = [A, B*Cw; zeros([length(Aw), length(A)]), Aw];
+Ce = [C zeros(size(Cw))];
 %% Estimator
-L = acker(transpose(A), transpose(C), [-2, -2, -2]);
+L = acker(transpose(Ae), transpose(Ce), -2 * [1, 1, 1, 1, 1]);
+
 
 
 
