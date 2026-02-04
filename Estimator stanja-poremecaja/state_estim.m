@@ -12,12 +12,15 @@ ic = 0;
 
 %Modify model to include the disturbance model 
 %d = const.
-Aw = [0, 1; 0, 0];
+omega = 0.1 *2 * pi;
+Aw = [0, 1; -omega^2, 0 ];
 Cw = [1, 0];
 Ae = [A, B*Cw; zeros([length(Aw), length(A)]), Aw];
 Ce = [C zeros(size(Cw))];
 %% Estimator
-L = acker(transpose(Ae), transpose(Ce), -2 * [1, 1, 1, 1, 1]);
+L = acker(transpose(Ae), transpose(Ce),  -2 * [1 , 1, 1, 1, 1]);
+
+
 
 
 
