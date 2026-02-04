@@ -5,3 +5,6 @@ Regulator po stanjima/slprj/sim/varcache/state_reg_mdl/varInfo.mat
 *.asv
 *.xml
 *.mat
+/Estimator stanja-poremecaja/slprj
+/PID/slprj
+/PID/slprj
