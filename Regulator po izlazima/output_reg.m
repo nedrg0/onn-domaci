@@ -1,0 +1,31 @@
+%% System
+A = [0 1 0; 0 0 1; -1 -3 -3];   %Matrica dinamike stanja
+B = [0; 0; 1];                  %Matrica ulaza
+C = [1, 0, 0];                    %Matrica izlaza
+D = 0;                          %Matrica direktnog prenosa
+
+sys = ss(A, B, C, D);
+%pause;
+
+T = 1e-3;
+ic = 0;
+
+%% Esitmator
+%Modify model to include the disturbance model 
+%d = const.
+omega = 0 *2 * pi;
+Aw = [0, 1; -omega^2, 0 ];
+Cw = [1, 0];
+Ae = [A, B*Cw; zeros([length(Aw), length(A)]), Aw];
+Ce = [C zeros(size(Cw))];
+L = acker(transpose(Ae), transpose(Ce),  -2 * [1 , 1, 1, 1, 1]);
+
+%% Regulator
+K = acker(A, B, -3 * [1, 1, 1]);
+umax = 1;
+
+
+
+
+
+
