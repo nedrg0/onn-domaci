@@ -52,7 +52,7 @@ for Ts = Tss
         p = [-10, -Ksi * w0 + 1i * w0 * sqrt(1 - Ksi^2), -Ksi * w0 - 1i * w0 * sqrt(1 - Ksi^2)];   
         fd = poly(p);
         K = acker(A, B, p);
-        [y, u, d, r, t] = simulate_step_input(0, 1, 1);
+        [y, u, d, r, t] = simulate_step_input(1, 1, 0);
 
         plot(t, y(:, 1), "LineWidth", 2, "DisplayName", "Odziv Ts = " + num2str(Ts) + ", \xi = " + num2str(Ksi));
         %legend("Odziv Ts = " + num2str(Ts) + ", \xi = " + num2str(Ksi));

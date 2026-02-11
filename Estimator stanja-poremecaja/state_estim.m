@@ -71,14 +71,14 @@ plot(t, dest, "LineWidth", 2, "LineStyle","--", "DisplayName", "d estimate");
 xlabel("Vreme [s]");ylabel("Amplituda [-]");grid on; legend show; 
 pause;
 %% Sim - Estimacija stanja i poremecaja. Prostoperiodican poremecaj
-omega = 0.1 *2 * pi;
+omega = 1 *2 * pi;
 Aw = [0, 1; -omega^2, 0 ];
 Cw = [1, 0];
 Ae = [A, B*Cw; zeros([length(Aw), length(A)]), Aw];
 Ce = [C zeros(size(Cw))];
 L = acker(transpose(Ae), transpose(Ce),  -3 * [1 , 1, 1, 1, 1]);
 
-[y, dest, d, xhat, x, t] = simulate(1, 1, 0, "sine");
+[y, dest, d, xhat, x, t] = simulate(1, 1, 1, "sine");
 t = t(1:length(xhat));
 
 subplot(4, 1, 1);
